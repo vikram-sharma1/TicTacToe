@@ -7,11 +7,59 @@ const TicTacToe = () => {
 
     const [value, setValue] = useState('X')
 
-    const [cell, setCells] = useState(Array(9).fill(''))
+    const [cell, setCell] = useState(Array(9).fill(''))
+
+    const [winner, setWinner] = useState()
+
+
+
+    const checkForWinner = (cell) => {
+
+        let combos = {
+            cross : [
+                [0,1,2],
+                [3,4,5],
+                [6,7,8]
+            ],
+            updown : [
+                [0,3,6],
+                [1,4,7],
+                [2,5,8]
+            ],
+            diagonals : [
+                [0,4,8],
+                [2,4,6]
+            ]
+        }
+
+
+        for(let x in combos){
+            combos[x].forEach((pattern) => {
+                    if(cell[pattern[0]] == '' ||
+                    cell[pattern[1]] == '' ||
+                    cell[pattern[2]] == ''
+                    ){
+                        // do nothing
+                    }
+                    else if(
+                        cell[pattern[0]] == cell[pattern[1]] &&
+                        cell[pattern[1]] == cell[pattern[2]]
+                    ){
+                        setWinner(cell[pattern[0]])
+                    }
+            });
+        }
+
+    }
 
 
 
     const handleClicked = (num) => {
+
+        if(cell[num] != ''){
+            alert('already Clicked')
+            return
+        }
 
         if(value == 'X'){
             cell[num] = 'X'
@@ -22,9 +70,16 @@ const TicTacToe = () => {
             setValue('X')
         }
         // alert (value)
-
-        console.log(cell)
         
+        checkForWinner(cell)
+        // console.log(cell)
+        
+    }
+
+    const handleRestart = () => {
+        setWinner(null)
+        setCell(Array(9).fill(''))
+
     }
 
 
@@ -34,7 +89,7 @@ const TicTacToe = () => {
             onClick={()=> {
                 handleClicked(num)
             }}
-          >--</td>
+          >{cell[num]}</td>
         )
       }
 
@@ -43,8 +98,6 @@ const TicTacToe = () => {
     <>
         <Heading/>
         <div  id='mainBox'>
-
-            Value = {value}
 
             <table>
                 <tbody>
@@ -67,6 +120,17 @@ const TicTacToe = () => {
             </table>
 
             </div>
+
+            {winner && (
+                <>
+                    <h1>
+                        {winner} is the Winner!
+                    </h1>
+                    <button onClick={()=> {
+                        handleRestart()
+                    }}>Play Again</button>
+                </>
+            )}
     </>
     
   )
