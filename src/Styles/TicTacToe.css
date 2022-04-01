@@ -1,0 +1,10 @@
+table td {
+    border: 3px solid gray;
+    width: 120px;
+    height: 120px;
+}
+
+#mainBox{
+    display: flex;
+    justify-content: center;
+}
