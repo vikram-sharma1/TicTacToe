@@ -11,6 +11,8 @@ const TicTacToe = () => {
 
     const [winner, setWinner] = useState()
 
+    const [ans, setAns] = useState(true)
+
 
 
     const checkForWinner = (cell) => {
@@ -46,11 +48,19 @@ const TicTacToe = () => {
                         cell[pattern[1]] == cell[pattern[2]]
                     ){
                         setWinner(cell[pattern[0]])
+                        // setAns(true)
+                    }
+                    else if (
+                        cell[pattern[0]] != cell[pattern[1]] &&
+                        cell[pattern[1]] != cell[pattern[2]]
+                    ){
+                        // setAns(false)
                     }
             });
         }
 
     }
+
 
 
 
@@ -126,11 +136,16 @@ const TicTacToe = () => {
                     <h1>
                         {winner} is the Winner!
                     </h1>
-                    <button onClick={()=> {
-                        handleRestart()
-                    }}>Play Again</button>
+                    
                 </>
             )}
+
+            <button className='button-16' onClick={()=> {
+                handleRestart()
+            }}>Play Again</button>
+          
+
+
     </>
     
   )
