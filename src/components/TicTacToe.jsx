@@ -11,7 +11,7 @@ const TicTacToe = () => {
 
     const [winner, setWinner] = useState()
 
-    const [ans, setAns] = useState(true)
+    // const [ans, setAns] = useState(true)
 
 
 
@@ -112,7 +112,7 @@ const TicTacToe = () => {
             <table>
                 <tbody>
                 <tr>
-                    <Cell num={0}/>
+                    <Cell num={0}/> 
                     <Cell num={1}/>
                     <Cell num={2}/>
                 </tr>

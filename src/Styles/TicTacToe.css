@@ -1,7 +1,12 @@
-table td {
+ td {
     border: 3px solid gray;
+    /* border-top: none; */
     width: 120px;
     height: 120px;
+}
+.upV{
+    border: 3px solid gray;
+
 }
 
 #mainBox{
